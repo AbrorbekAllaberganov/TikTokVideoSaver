@@ -9,12 +9,13 @@ import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import payload.DTO.NewDTO;
 import payload.ResponseDTO;
 import service.TIkTokService;
 
 public class ApplicationBot extends TelegramLongPollingBot {
-    private final String USERNAME = "Bot username";
-    private final String TOKEN = "Bot Token";
+    private final String USERNAME = "TikTokVideoSaverBot";
+    private final String TOKEN = "5132642742:AAGwmXzoVUhAbeMACGHzrxu0mra3NlaGBi4";
 
 
     @Override
@@ -39,18 +40,19 @@ public class ApplicationBot extends TelegramLongPollingBot {
                 SendMessage sendMessage=new SendMessage(String.valueOf(chat_id),"Menga Tik Tokdan video linkini yubroing");
                 executeSendMessage(sendMessage);
             }else {
-                ResponseDTO responseDTO=tIkTokService.saveVideo(text);
+                NewDTO newDTO=tIkTokService.saveVideo(text);
                 try {
                     SendVideo sendVideo=new SendVideo();
                     sendVideo.setChatId(String.valueOf(chat_id));
-                    sendVideo.setVideo(new InputFile(responseDTO.getNoWatermarkDownloadUrl().get(0)));
-                    sendVideo.setCaption(responseDTO.getDescription()+"\n"+text);
+                    sendVideo.setVideo(new InputFile(newDTO.getVideo().get(0)));
+                    sendVideo.setCaption("\n\n"+text);
                     executeSendVideo(sendVideo);
                 }catch (Exception e){
                     SendMessage sendMessage=new SendMessage();
                     sendMessage.setChatId(String.valueOf(chat_id));
                     sendMessage.setText("Bu url xato");
                     executeSendMessage(sendMessage);
+                    System.out.println(e.getMessage());
                 }
             }
 
