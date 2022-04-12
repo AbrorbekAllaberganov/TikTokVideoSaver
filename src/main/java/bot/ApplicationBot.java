@@ -14,8 +14,8 @@ import payload.ResponseDTO;
 import service.TIkTokService;
 
 public class ApplicationBot extends TelegramLongPollingBot {
-    private final String USERNAME = "TikTokVideoSaverBot";
-    private final String TOKEN = "5132642742:AAGwmXzoVUhAbeMACGHzrxu0mra3NlaGBi4";
+    private final String USERNAME = "USERNAME";
+    private final String TOKEN = "TOKEN";
 
 
     @Override

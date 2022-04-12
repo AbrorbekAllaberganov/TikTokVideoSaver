@@ -18,12 +18,7 @@ public class TIkTokService {
         Gson gson=new Gson();
         OkHttpClient client = new OkHttpClient();
 
-        Request request = new Request.Builder()
-                .url("https://tiktok-downloader-download-tiktok-videos-without-watermark.p.rapidapi.com/vid/index?url=https%3A%2F%2Fvm.tiktok.com%2FZSenJuWxH%2F")
-                .get()
-                .addHeader("X-RapidAPI-Host", "tiktok-downloader-download-tiktok-videos-without-watermark.p.rapidapi.com")
-                .addHeader("X-RapidAPI-Key", "56cb08adf9mshdf817a9b61f9a85p140c71jsn84a0f1973239")
-                .build();
+//        REQUEST
 
         try {
             Response response = client.newCall(request).execute();
